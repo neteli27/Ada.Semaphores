@@ -22,7 +22,7 @@ procedure Lab1 is
    q:integer;
 
    --semaphores
-   Sa, Sq, Smc, S21, S31, S41, S11, S32, S42, S13, S14, S12, S22, S33, S15:Suspension_Object;
+   Sa, Sc, S21, S31, S41, S11, S32, S42, S13, S14, S12, S22, S33, S15:Suspension_Object;
 
    --threads
 
@@ -47,16 +47,14 @@ procedure Lab1 is
          Suspend_Until_True(S11);
 
          --copy q, MC
-         Suspend_Until_True(Sq);
+         Suspend_Until_True(Sc);
          q1:=q; --Critical region
-         Set_True(Sq);
-         Suspend_Until_True(Smc);
          for i in 1..N loop
             for j in 1..N loop
                MC1(i)(j):= MC(i)(j);
             end loop;
          end loop;
-         Set_True(Smc);
+         Set_True(Sc);
          --counting
          for n in 1..H loop
             for i in 1..N loop
@@ -108,16 +106,14 @@ procedure Lab1 is
          Suspend_Until_True(S21);
          Suspend_Until_True(S22);
          --copy q, MC
-         Suspend_Until_True(Sq);
+         Suspend_Until_True(Sc);
          q2:=q;
-         Set_True(Sq);
-         Suspend_Until_True(Smc);
          for i in 1..N loop
             for j in 1..N loop
                MC2(i)(j):= MC(i)(j);
             end loop;
          end loop;
-        Set_True(Smc);
+        Set_True(Sc);
          --counting
          for n in H+1..2*H loop
             for i in 1..N loop
@@ -153,16 +149,14 @@ procedure Lab1 is
          Suspend_Until_True(S32);
          Suspend_Until_True(S33);
          --copy q, MC
-         Suspend_Until_True(Sq);
+         Suspend_Until_True(Sc);
          q3:=q;
-         Set_True(Sq);
-         Suspend_Until_True(Smc);
          for i in 1..N loop
             for j in 1..N loop
                MC3(i)(j):= MC(i)(j);
             end loop;
          end loop;
-         Set_True(Smc);
+         Set_True(Sc);
          --counting
          for n in 2*H+1..3*H loop
             for i in 1..N loop
@@ -214,16 +208,14 @@ procedure Lab1 is
          Suspend_Until_True(S42);
 
          --copy q, MC
-         Suspend_Until_True(Sq);
+         Suspend_Until_True(Sc);
          q4:=q;
-         Set_True(Sq);
-         Suspend_Until_True(Smc);
          for i in 1..N loop
             for j in 1..N loop
                MC4(i)(j):= MC(i)(j);
             end loop;
          end loop;
-         Set_True(Smc);
+         Set_True(Sc);
          --counting
          for n in 3*H+1..4*H loop
             for i in 1..N loop
