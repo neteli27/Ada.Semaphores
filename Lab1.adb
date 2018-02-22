@@ -79,8 +79,6 @@ procedure Lab1 is
          Suspend_Until_True(S15);
          --output data
          Put_Line("Maximal value a = " & integer'image(a));
-         --put("Maximal value a = ");
-         --put(a);
          Put_Line("T1 is finished");
 
       end T1;
